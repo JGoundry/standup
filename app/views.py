@@ -52,8 +52,15 @@ def login():
 
     return render_template('login.html', title='Login', form=form)
 
+@app.route('/profile', methods=['GET', 'POST'])
+@login_required
+def profile():
+    return render_template('profile.html', title=current_user.username + ' - Profile')
+
 @app.route('/')
 @app.route('/home')
 @login_required
 def home():
     return render_template('home.html')
+
+
