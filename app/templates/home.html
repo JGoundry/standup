@@ -1,12 +1,34 @@
 {% extends "base.html" %}
 {% block content %}
-<!-- <div class="list-group">
-  <a class="list-group-item" href="#"><i class="fa fa-home fa-fw" aria-hidden="true"></i>&nbsp; Home</a>
-  <a class="list-group-item" href="#"><i class="fa fa-book fa-fw" aria-hidden="true"></i>&nbsp; Library</a>
-  <a class="list-group-item" href="#"><i class="fa fa-pencil fa-fw" aria-hidden="true"></i>&nbsp; Applications</a>
-  <a class="list-group-item" href="#"><i class="fa fa-cog fa-fw" aria-hidden="true"></i>&nbsp; Settings</a>
-</div> -->
-{% if current_user.is_authenticated %}
-<h1>Hi, {{ current_user.username }}!</h1>
-{% endif %}
+<section class="h-100 gradient-custom">
+    <div class="container py-5 h-100">
+          {% for post in posts %}
+          <div class="row d-flex justify-content-center align-items-center h-100">
+              <div class="card mb-3 col-6 p-3" style="border-radius: 1rem;">
+                <div class="card-body mx-3 my-3">
+                <h5 class="d-inline-block card-title"><strong> {{ post.title }}</strong></h5>
+                <p class="d-inline-block card-subtitle float-right"><small class="text-muted">Created by <a href="#" class="text-black-50 fw-bold">{{ post.op }}</a></small></p>
+                <img class="card-img-top img-fluid" src="{{ post.image }}" alt="Post Image">
+                  <a class="d-inline-block btn" href="{{ url_for('like', post=post.id) }}">
+                    {% set liked = [] %}
+                    {% for like in post.like %}
+                      {% if like.user == current_user %}
+                        {% do liked.append(1) %}
+                        <i class="fa-solid fa-heart"> {{ post.no_of_likes }}</i>
+                      {% endif %}
+                    {% endfor %}
+                    {% if not liked %}
+                      <i class="fa-regular fa-heart"> {{ post.no_of_likes }}</i>
+                    {% endif %}
+                  </a>
+                  <p class="d-inline-block card-text"><small class="text-muted">{{ post.date_created }}</small></p>
+                  <p class="card-text margin-left">{{ post.caption }}</p>
+                  
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+      </div>
+    </div>
+  </section>
 {% endblock %}

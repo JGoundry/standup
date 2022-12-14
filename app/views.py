@@ -4,7 +4,10 @@ from .forms import LoginForm
 from flask_admin.contrib.sqla import ModelView
 from flask_login import login_required, LoginManager, login_user, logout_user, current_user
 from flask_bcrypt import Bcrypt
-from .models import User
+from .models import User, Post, Like
+
+# Jijna do
+app.jinja_env.add_extension('jinja2.ext.do')
 
 # Bcrypt
 bcrypt = Bcrypt(app)
@@ -12,6 +15,7 @@ bcrypt = Bcrypt(app)
 # Admin
 admin.add_view(ModelView(models.User, db.session))
 admin.add_view(ModelView(models.Post, db.session))
+admin.add_view(ModelView(models.Like, db.session))
 
 # Login Manager: try put in init
 login_manager = LoginManager()
@@ -58,9 +62,27 @@ def profile():
     return render_template('profile.html', title=current_user.username + ' - Profile')
 
 @app.route('/')
-@app.route('/home')
+@app.route('/home', methods=['GET', 'POST'])
 @login_required
 def home():
-    return render_template('home.html')
+    posts = Post.query.order_by(Post.date_created.desc())
+    return render_template('home.html', posts=posts)
 
+
+@app.route('/like/<int:post>/', methods=['GET', 'POST'])
+@login_required
+def like(post):
+    post = Post.query.filter(Post.id == post).first()
+    like_filter = Like.query.filter(Like.user == current_user and Like.post_id == post.id).first()
+    if like_filter == None:
+        new_like = Like(post_id=post.id, user=current_user)
+        db.session.add(new_like)
+        post.no_of_likes += 1
+        db.session.commit()
+    else:
+        db.session.delete(like_filter)
+        post.no_of_likes -= 1
+        db.session.commit()
+
+    return redirect(url_for('home'))
 
