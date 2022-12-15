@@ -162,7 +162,6 @@ def post():
 def profile_edit():
     form = ProfileForm()
     if form.validate_on_submit():
-        print(form.title.data + "YEAHAHHASH")
         if form.title.data:
             current_user.title = form.title.data
 
