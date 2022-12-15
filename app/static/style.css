@@ -19,3 +19,16 @@
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     background: linear-gradient(to right, rgba(37, 117, 252, 1), rgb(190, 50, 69))
     }
+
+/* Square Profile Photo */
+.image{
+    position: relative;
+    overflow: visible;
+    padding-bottom: 100%;
+}
+.image img{
+    position:absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

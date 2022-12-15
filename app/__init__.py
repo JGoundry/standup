@@ -13,7 +13,7 @@ bcrypt = Bcrypt(app)
 # Flask Migrate
 migrate = Migrate(app, db, render_as_batch=True)
 
-# Flask Admion
+# Flask Admin
 admin = Admin(app, template_mode='bootstrap4')
 
 from app import views, models

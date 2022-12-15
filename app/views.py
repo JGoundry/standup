@@ -1,10 +1,16 @@
-from flask import render_template, flash, request, Flask, redirect, url_for
+from flask import render_template, flash, request, Flask, redirect, url_for, send_from_directory
 from app import app, models, db, admin
-from .forms import LoginForm
+from .forms import LoginForm, RegisterForm, PostForm, ProfileForm
 from flask_admin.contrib.sqla import ModelView
 from flask_login import login_required, LoginManager, login_user, logout_user, current_user
 from flask_bcrypt import Bcrypt
-from .models import User, Post, Like
+from .models import User, Post, Like, Follower
+from werkzeug.utils import secure_filename
+import os
+
+# File Upload
+UPLOAD_FOLDER_POST = 'app/static/posts/'
+UPLOAD_FOLDER_USER = 'app/static/users/'
 
 # Jijna do
 app.jinja_env.add_extension('jinja2.ext.do')
@@ -16,6 +22,7 @@ bcrypt = Bcrypt(app)
 admin.add_view(ModelView(models.User, db.session))
 admin.add_view(ModelView(models.Post, db.session))
 admin.add_view(ModelView(models.Like, db.session))
+admin.add_view(ModelView(models.Follower, db.session))
 
 # Login Manager: try put in init
 login_manager = LoginManager()
@@ -34,16 +41,17 @@ def logout():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    form = LoginForm()
+    form = RegisterForm()
 
     if form.validate_on_submit():
-        hashed_password = bcrypt.generate_password_hash(form.password.data)
-        new_user = User(username=form.username.data, password=hashed_password)
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        new_user = User(username=form.username.data, password=hashed_password, profile_img="static/default.png", bio="")
         db.session.add(new_user)
         db.session.commit()
-        return redirect(url_for('login'))
+        login_user(new_user)
+        return redirect(url_for('home'))
 
-    return render_template('register.html', title='Create Account', form=form)
+    return render_template('register.html', title='Register', form=form)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -56,20 +64,29 @@ def login():
 
     return render_template('login.html', title='Login', form=form)
 
-@app.route('/profile', methods=['GET', 'POST'])
+@app.route('/<user>', methods=['GET', 'POST'])
 @login_required
-def profile():
-    return render_template('profile.html', title=current_user.username + ' - Profile')
+def profile(user):
+    user = User.query.filter_by(username=user).first()
+    post = Post.query.filter_by(user=user).first()
+    following = Follower.query.filter_by(followed=user, follower=current_user).first()
+    return render_template('profile.html', user=user, post=post, following=following, title=str(user) + ' - Profile')
+
+@app.route('/<user>/posts', methods=['GET', 'POST'])
+@login_required
+def profile_posts(user):
+    posts = Post.query.filter_by(op=user).order_by(Post.date_created)
+    return render_template('home.html', posts=posts, title=str(user) + ' - Posts')
+
 
 @app.route('/')
 @app.route('/home', methods=['GET', 'POST'])
 @login_required
 def home():
-    posts = Post.query.order_by(Post.date_created.desc())
-    return render_template('home.html', posts=posts)
+    posts = Post.query.order_by(Post.date_created)
+    return render_template('home.html', posts=posts, title='Home')
 
-
-@app.route('/like/<int:post>/', methods=['GET', 'POST'])
+@app.route('/like/<int:post>', methods=['GET', 'POST'])
 @login_required
 def like(post):
     post = Post.query.filter(Post.id == post).first()
@@ -86,3 +103,76 @@ def like(post):
 
     return redirect(url_for('home'))
 
+@app.route('/<user>/follow', methods=['GET', 'POST'])
+@login_required
+def follow(user):
+    user = User.query.filter(User.username == user).first()
+
+    if (user == current_user):
+        return redirect(url_for('profile', user=user))
+        
+    follow_filter = Follower.query.filter(Follower.follower == current_user and Follower.followed == user).first()
+    if follow_filter == None:
+        new_follow = Follower(follower=current_user, followed=user)
+        db.session.add(new_follow)
+        user.no_of_followers += 1
+        current_user.no_of_followed += 1
+        db.session.commit()
+    else:
+        db.session.delete(follow_filter)
+        user.no_of_followers -= 1
+        current_user.no_of_followed -= 1
+        db.session.commit()
+
+    return redirect(url_for('profile', user=user))
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route('/post', methods=['GET', 'POST'])
+@login_required
+def post():
+    form = PostForm()
+
+    if form.validate_on_submit():
+        if form.file.data:
+            filename = secure_filename(form.file.data.filename)
+            form.file.data.save(UPLOAD_FOLDER_POST + filename)
+            new_post = Post(title=form.title.data, text=form.text.data, user=current_user, image='/static/posts/' + filename)
+        else:
+            new_post = Post(title=form.title.data, text=form.text.data, user=current_user)
+
+        db.session.add(new_post)
+        db.session.commit()
+        return redirect(url_for('home'))
+
+    return render_template("create_post.html", form=form)
+
+@app.route('/edit', methods=['GET', 'POST'])
+@login_required
+def profile_edit():
+    form = ProfileForm()
+    if form.validate_on_submit():
+        print(form.title.data + "YEAHAHHASH")
+        if form.title.data:
+            current_user.title = form.title.data
+
+        if form.bio.data:
+            current_user.bio = form.bio.data
+
+        if form.old_password.data and form.password.data:
+            if bcrypt.check_password_hash(current_user.password, form.old_password.data):
+                hashed_password = bcrypt.generate_password_hash(form.old_password.data).decode('utf-8')
+                current_user.password = hashed_password
+
+        if form.file.data:
+            filename = secure_filename(form.file.data.filename)
+            form.file.data.save(UPLOAD_FOLDER_USER + filename)
+            current_user.profile_img = '/static/users/' + filename
+
+        db.session.commit()
+
+        return redirect(url_for('profile', user=current_user))
+
+    return render_template("edit_profile.html", form=form)

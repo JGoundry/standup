@@ -17,7 +17,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-        <link href="static/style.css" rel="stylesheet">
+        <link href="/static/style.css" rel="stylesheet">
       </head>
     <body>
 
@@ -43,7 +43,7 @@
       <!-- Navbar brand -->
       <a class="navbar-brand mt-2 mt-lg-0" href="#">
         <img
-          src="static/standup.png"
+          src="/static/standup.png"
           height="50"
           alt="StandUp Logo"
           loading="lazy"
@@ -55,17 +55,13 @@
         <li class="nav-item">
           <a class="nav-link" href="{{ url_for('home') }}">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Following</a>
-        </li>
       </ul>
       <!-- Left links -->
     </div>
     <!-- Collapsible wrapper -->
 
     <!-- Right elements -->
-    Search Bar Here
-      <button type="button" class="btn btn-outline-primary mx-2">Create Post</button>
+      <a role="button" href="{{ url_for('post') }}" class="btn btn-outline-primary mx-2">Create Post</a>
       <!-- Avatar -->
       <div class="dropdown">
         <a class="dropdown-toggle d-flex align-items-center hidden-arrow" id="navbarDropdownMenuAvatar" role="button" href="#" data-bs-toggle="dropdown" aria-expanded="false">
@@ -79,12 +75,13 @@
           />
         </a>
         <ul class="dropdown-menu dropdown-menu-end">
-          <li><a class="dropdown-item" href="{{ url_for('profile') }}"><i class="fa-regular fa-user"></i> Profile</a></li>
-          <li><a class="dropdown-item" href="#"><i class="fa-regular fa-gear"></i> Settings</a></li>
+          <li><a class="dropdown-item" href="{{ url_for('profile', user=current_user) }}"><i class="fa-regular fa-user"></i> Profile</a></li>
+          <li><a class="dropdown-item" href="{{ url_for('profile_edit') }}"><i class="fa-regular fa-gear"></i>Edit Profile</a></li>
           <li><a class="dropdown-item" href="{{ url_for('logout') }}"><i class="fa-regular fa-right-from-bracket"></i> Logout</a></li>
         </ul>
       </div>
     </div>
+
     {% else %}
     {% endif %}
     <!-- Right elements -->
@@ -92,7 +89,7 @@
   <!-- Container wrapper -->
 </nav>
 <!-- Navbar -->
-      <div>
+      <nav>
         {% block content %}{% endblock %}
-      </div>
-    </body>
+      </nav>
+      </body>
