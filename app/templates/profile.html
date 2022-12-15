@@ -30,11 +30,11 @@
             <div class="d-flex pt-4 pb-3 px-4 text-black text-center justify-content-between" style="background-color: #f8f9fa;">
               <div class="pt-2">
                 {% if following %}
-                <a role="button" href="{{ url_for('follow', user=user) }}" class="mb-1 h5 btn btn-outline-danger mx-2">Unfollow</a>
+                <a role="button" href="{{ url_for('follow', user=user.username) }}" class="mb-1 h5 btn btn-outline-danger mx-2">Unfollow</a>
                 {% elif current_user == user %}
                 <a role="button" href="{{ url_for('profile_edit') }}" class="mb-1 h5 btn btn-outline-success mx-2">Edit Profile</a>
                 {% else %}
-                  <a role="button" href="{{ url_for('follow', user=user) }}" class="mb-1 h5 btn btn-outline-primary mx-2">Follow</a>
+                <a role="button" href="{{ url_for('follow', user=user.username) }}" class="mb-1 h5 btn btn-outline-primary mx-2">Follow</a>
                 {% endif %}
               </div>
               <div class="d-flex">

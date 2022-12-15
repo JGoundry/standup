@@ -18,3 +18,5 @@ admin = Admin(app, template_mode='bootstrap4')
 
 from app import views, models
 
+# import logging
+# logging.basicConfig(level=logging.DEBUG)

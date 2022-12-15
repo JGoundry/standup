@@ -6,7 +6,10 @@ from flask_login import login_required, LoginManager, login_user, logout_user, c
 from flask_bcrypt import Bcrypt
 from .models import User, Post, Like, Follower
 from werkzeug.utils import secure_filename
-import os
+import logging
+
+# Info Logger
+logging.basicConfig(filename = 'info.log', level=logging.INFO, format = f'%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
 
 # File Upload
 UPLOAD_FOLDER_POST = 'app/static/posts/'
@@ -24,7 +27,7 @@ admin.add_view(ModelView(models.Post, db.session))
 admin.add_view(ModelView(models.Like, db.session))
 admin.add_view(ModelView(models.Follower, db.session))
 
-# Login Manager: try put in init
+# Login Manager
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "login"
@@ -36,6 +39,7 @@ def load_user(user_id):
 @app.route('/logout', methods=['GET', 'POST'])
 @login_required
 def logout():
+    app.logger.info("user " + str(current_user) + " logged out")
     logout_user()
     return redirect(url_for('login'))
 
@@ -49,6 +53,7 @@ def register():
         db.session.add(new_user)
         db.session.commit()
         login_user(new_user)
+        app.logger.info("user " + str(current_user) + " registered")
         return redirect(url_for('home'))
 
     return render_template('register.html', title='Register', form=form)
@@ -60,7 +65,10 @@ def login():
         user = User.query.filter_by(username=form.username.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user)
+            app.logger.info("user " + str(current_user) + " logged in")
             return redirect(url_for('home'))
+        else:
+            app.logger.info("user " + str(user) + " failed to log in")
 
     return render_template('login.html', title='Login', form=form)
 
@@ -103,7 +111,7 @@ def like(post):
 
     return redirect(url_for('home'))
 
-@app.route('/<user>/follow', methods=['GET', 'POST'])
+@app.route('/follow/<user>', methods=['GET', 'POST'])
 @login_required
 def follow(user):
     user = User.query.filter(User.username == user).first()
@@ -147,7 +155,7 @@ def post():
         db.session.commit()
         return redirect(url_for('home'))
 
-    return render_template("create_post.html", form=form)
+    return render_template("create_post.html", form=form, title='Create Post')
 
 @app.route('/edit', methods=['GET', 'POST'])
 @login_required
@@ -175,4 +183,4 @@ def profile_edit():
 
         return redirect(url_for('profile', user=current_user))
 
-    return render_template("edit_profile.html", form=form)
+    return render_template("edit_profile.html", form=form, title=str(current_user) + "- Edit Profile")
