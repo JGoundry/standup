@@ -1,6 +1,15 @@
-from app import db
+from app import app, db
 from flask_login import UserMixin
 from sqlalchemy.sql import func
+from sqlalchemy import Table, Column, Integer, ForeignKey
+from sqlalchemy import MetaData
+
+meta = MetaData()
+
+followers = db.Table('followers',
+    db.Column('follower_id', db.Integer, db.ForeignKey('user.id')),
+    db.Column('followed_id', db.Integer, db.ForeignKey('user.id'))
+)
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -9,9 +18,33 @@ class User(db.Model, UserMixin):
     profile_img = db.Column(db.String(), nullable=True)
     title = db.Column(db.String(50), nullable=True)
     bio = db.Column(db.String(150), nullable=True)
-    no_of_followers = db.Column(db.Integer, default=0)
-    no_of_followed = db.Column(db.Integer, default=0)
     posts = db.relationship('Post', backref='user', lazy='dynamic')
+
+    followed = db.relationship(
+        'User', secondary=followers,
+        primaryjoin=(followers.c.follower_id == id),
+        secondaryjoin=(followers.c.followed_id == id),
+        backref=db.backref('followers', lazy='dynamic'), lazy='dynamic')
+
+    def follow(self, user):
+        if not self.is_following(user):
+            self.followed.append(user)
+
+    def unfollow(self, user):
+        if self.is_following(user):
+            self.followed.remove(user)
+
+    def is_following(self, user):
+        return self.followed.filter(
+            followers.c.followed_id == user.id).count() > 0
+
+    def followers_count(self):
+        statement = followers.select().where(followers.c.followed_id == self.id)
+        count = len(db.engine.execute(statement).all())
+        return count
+        
+    def following_count(self):
+        return self.followed.count()
 
     def __repr__(self):
         return str(self.username)
@@ -40,13 +73,5 @@ class Like(db.Model):
     def __repr__(self):
         return str(self.user)
 
-class Follower(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    follower_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    follower = db.relationship('User', foreign_keys=[follower_id], uselist=False)
-    followed_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    followed = db.relationship('User', foreign_keys=[followed_id], uselist=False)
-    __tablename__ = 'follower'
-
-    def __repr__(self):
-        return str(self.followed)
+with app.app_context():
+    db.create_all()

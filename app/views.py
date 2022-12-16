@@ -4,7 +4,7 @@ from .forms import LoginForm, RegisterForm, PostForm, ProfileForm
 from flask_admin.contrib.sqla import ModelView
 from flask_login import login_required, LoginManager, login_user, logout_user, current_user
 from flask_bcrypt import Bcrypt
-from .models import User, Post, Like, Follower
+from .models import User, Post, Like, followers
 from werkzeug.utils import secure_filename
 import logging
 
@@ -25,7 +25,6 @@ bcrypt = Bcrypt(app)
 admin.add_view(ModelView(models.User, db.session))
 admin.add_view(ModelView(models.Post, db.session))
 admin.add_view(ModelView(models.Like, db.session))
-admin.add_view(ModelView(models.Follower, db.session))
 
 # Login Manager
 login_manager = LoginManager()
@@ -77,8 +76,7 @@ def login():
 def profile(user):
     user = User.query.filter_by(username=user).first()
     post = Post.query.filter_by(user=user).first()
-    following = Follower.query.filter_by(followed=user, follower=current_user).first()
-    return render_template('profile.html', user=user, post=post, following=following, title=str(user) + ' - Profile')
+    return render_template('profile.html', user=user, post=post, title=str(user) + ' - Profile')
 
 @app.route('/<user>/posts', methods=['GET', 'POST'])
 @login_required
@@ -115,28 +113,17 @@ def like(post):
 @login_required
 def follow(user):
     user = User.query.filter(User.username == user).first()
-
-    if (user == current_user):
-        return redirect(url_for('profile', user=user))
-        
-    follow_filter = Follower.query.filter(Follower.follower == current_user and Follower.followed == user).first()
-    if follow_filter == None:
-        new_follow = Follower(follower=current_user, followed=user)
-        db.session.add(new_follow)
-        user.no_of_followers += 1
-        current_user.no_of_followed += 1
-        db.session.commit()
-    else:
-        db.session.delete(follow_filter)
-        user.no_of_followers -= 1
-        current_user.no_of_followed -= 1
-        db.session.commit()
-
+    current_user.follow(user)
+    db.session.commit()
     return redirect(url_for('profile', user=user))
 
-def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+@app.route('/unfollow/<user>', methods=['GET', 'POST'])
+@login_required
+def unfollow(user):
+    user = User.query.filter(User.username == user).first()
+    current_user.unfollow(user)
+    db.session.commit()
+    return redirect(url_for('profile', user=user))
 
 @app.route('/post', methods=['GET', 'POST'])
 @login_required
