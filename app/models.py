@@ -59,9 +59,6 @@ class Post(db.Model):
     __tablename__ = 'post'
 
     def like_count(self):
-        # statement = Like.select().where(like.c.post_id == self.id)
-        # count = len(db.query(statement).all())
-        # qu
         return Like.query.filter(Like.post_id==self.id).count()
 
     def __repr__(self):

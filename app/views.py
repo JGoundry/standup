@@ -97,7 +97,6 @@ def home():
 def like(post):
     post = Post.query.filter(Post.id == post).first()
     like_filter = Like.query.filter(Like.user == current_user, Like.post_id == post.id).first()
-    print(like_filter)
     if like_filter == None:
         new_like = Like(post_id=post.id, user=current_user)
         db.session.add(new_like)

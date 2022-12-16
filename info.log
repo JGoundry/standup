@@ -4128,3 +4128,111 @@ NameError: name 'User' is not defined
 2022-12-16 15:28:58,114 INFO werkzeug Thread-52 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 15:28:58] "[36mGET /static/users/pfp.jpeg HTTP/1.1[0m" 304 -
 2022-12-16 15:28:58,136 INFO werkzeug Thread-53 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 15:28:58] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
 2022-12-16 15:28:58,137 INFO werkzeug Thread-54 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 15:28:58] "[36mGET /static/posts/nightmare.jpg HTTP/1.1[0m" 304 -
+2022-12-16 17:10:27,405 INFO werkzeug MainThread : [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2022-12-16 17:10:27,406 INFO werkzeug MainThread : [33mPress CTRL+C to quit[0m
+2022-12-16 17:10:27,407 INFO werkzeug MainThread :  * Restarting with stat
+2022-12-16 17:10:28,004 WARNING werkzeug MainThread :  * Debugger is active!
+2022-12-16 17:10:28,028 INFO werkzeug MainThread :  * Debugger PIN: 439-137-571
+2022-12-16 17:10:32,146 INFO werkzeug Thread-2 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:10:32] "[32mGET / HTTP/1.1[0m" 302 -
+2022-12-16 17:10:32,209 INFO werkzeug Thread-3 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:10:32] "GET /login?next=%2F HTTP/1.1" 200 -
+2022-12-16 17:10:32,378 INFO werkzeug Thread-4 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:10:32] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2022-12-16 17:10:32,590 INFO werkzeug Thread-5 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:10:32] "[36mGET /static/standup.png HTTP/1.1[0m" 304 -
+2022-12-16 17:10:42,761 INFO app Thread-6 (process_request_thread) : user josh logged in
+2022-12-16 17:10:42,763 INFO werkzeug Thread-6 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:10:42] "[32mPOST /login?next=%2F HTTP/1.1[0m" 302 -
+2022-12-16 17:10:42,791 INFO werkzeug Thread-7 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:10:42] "GET /home HTTP/1.1" 200 -
+2022-12-16 17:10:42,872 INFO werkzeug Thread-8 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:10:42] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2022-12-16 17:10:42,892 INFO werkzeug Thread-9 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:10:42] "[36mGET /static/posts/image0.jpeg HTTP/1.1[0m" 304 -
+2022-12-16 17:10:42,895 INFO werkzeug Thread-10 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:10:42] "[36mGET /static/posts/nightmare.jpg HTTP/1.1[0m" 304 -
+2022-12-16 17:10:42,903 INFO werkzeug Thread-11 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:10:42] "[36mGET /static/standup.png HTTP/1.1[0m" 304 -
+2022-12-16 17:10:42,936 INFO werkzeug Thread-12 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:10:42] "[36mGET /static/users/pfp.jpeg HTTP/1.1[0m" 304 -
+2022-12-16 17:11:10,957 INFO werkzeug Thread-13 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:11:10] "[32mGET /like/2 HTTP/1.1[0m" 302 -
+2022-12-16 17:11:10,972 INFO werkzeug Thread-14 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:11:10] "GET /home HTTP/1.1" 200 -
+2022-12-16 17:11:10,977 INFO werkzeug Thread-15 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:11:10] "[36mGET /static/standup.png HTTP/1.1[0m" 304 -
+2022-12-16 17:11:10,980 INFO werkzeug Thread-16 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:11:10] "[36mGET /static/users/pfp.jpeg HTTP/1.1[0m" 304 -
+2022-12-16 17:11:11,046 INFO werkzeug Thread-17 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:11:11] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2022-12-16 17:11:11,048 INFO werkzeug Thread-18 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:11:11] "[36mGET /static/posts/nightmare.jpg HTTP/1.1[0m" 304 -
+2022-12-16 17:11:11,065 INFO werkzeug Thread-19 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:11:11] "[36mGET /static/posts/image0.jpeg HTTP/1.1[0m" 304 -
+2022-12-16 17:11:14,207 INFO werkzeug Thread-20 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:11:14] "[32mGET /like/2 HTTP/1.1[0m" 302 -
+2022-12-16 17:11:14,232 INFO werkzeug Thread-21 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:11:14] "GET /home HTTP/1.1" 200 -
+2022-12-16 17:11:14,240 INFO werkzeug Thread-22 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:11:14] "[36mGET /static/standup.png HTTP/1.1[0m" 304 -
+2022-12-16 17:11:14,242 INFO werkzeug Thread-23 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:11:14] "[36mGET /static/users/pfp.jpeg HTTP/1.1[0m" 304 -
+2022-12-16 17:11:14,269 INFO werkzeug Thread-24 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:11:14] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2022-12-16 17:11:14,270 INFO werkzeug Thread-25 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:11:14] "[36mGET /static/posts/nightmare.jpg HTTP/1.1[0m" 304 -
+2022-12-16 17:11:14,275 INFO werkzeug Thread-26 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:11:14] "[36mGET /static/posts/image0.jpeg HTTP/1.1[0m" 304 -
+2022-12-16 17:13:08,971 INFO werkzeug MainThread :  * Detected change in '/Users/joshgoundry/standup/app/views.py', reloading
+2022-12-16 17:13:09,153 INFO werkzeug MainThread :  * Restarting with stat
+2022-12-16 17:13:10,093 WARNING werkzeug MainThread :  * Debugger is active!
+2022-12-16 17:13:10,112 INFO werkzeug MainThread :  * Debugger PIN: 439-137-571
+2022-12-16 17:13:13,590 INFO werkzeug MainThread :  * Detected change in '/Users/joshgoundry/standup/app/views.py', reloading
+2022-12-16 17:13:13,736 INFO werkzeug MainThread :  * Restarting with stat
+2022-12-16 17:13:14,393 WARNING werkzeug MainThread :  * Debugger is active!
+2022-12-16 17:13:14,414 INFO werkzeug MainThread :  * Debugger PIN: 439-137-571
+2022-12-16 17:13:17,889 INFO werkzeug Thread-2 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:17] "GET /home HTTP/1.1" 200 -
+2022-12-16 17:13:17,948 INFO werkzeug Thread-3 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:17] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2022-12-16 17:13:17,979 INFO werkzeug Thread-6 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:17] "[36mGET /static/posts/image0.jpeg HTTP/1.1[0m" 304 -
+2022-12-16 17:13:17,981 INFO werkzeug Thread-5 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:17] "[36mGET /static/users/pfp.jpeg HTTP/1.1[0m" 304 -
+2022-12-16 17:13:17,983 INFO werkzeug Thread-7 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:17] "[36mGET /static/posts/nightmare.jpg HTTP/1.1[0m" 304 -
+2022-12-16 17:13:17,983 INFO werkzeug Thread-4 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:17] "[36mGET /static/standup.png HTTP/1.1[0m" 304 -
+2022-12-16 17:13:26,594 INFO werkzeug MainThread : [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2022-12-16 17:13:26,594 INFO werkzeug MainThread : [33mPress CTRL+C to quit[0m
+2022-12-16 17:13:26,596 INFO werkzeug MainThread :  * Restarting with stat
+2022-12-16 17:13:27,172 WARNING werkzeug MainThread :  * Debugger is active!
+2022-12-16 17:13:27,191 INFO werkzeug MainThread :  * Debugger PIN: 439-137-571
+2022-12-16 17:13:28,307 INFO werkzeug Thread-2 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:28] "[32mGET /like/3 HTTP/1.1[0m" 302 -
+2022-12-16 17:13:28,340 INFO werkzeug Thread-3 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:28] "GET /home HTTP/1.1" 200 -
+2022-12-16 17:13:28,398 INFO werkzeug Thread-4 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:28] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2022-12-16 17:13:28,424 INFO werkzeug Thread-5 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:28] "[36mGET /static/standup.png HTTP/1.1[0m" 304 -
+2022-12-16 17:13:28,425 INFO werkzeug Thread-6 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:28] "[36mGET /static/users/pfp.jpeg HTTP/1.1[0m" 304 -
+2022-12-16 17:13:28,428 INFO werkzeug Thread-7 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:28] "[36mGET /static/posts/image0.jpeg HTTP/1.1[0m" 304 -
+2022-12-16 17:13:28,432 INFO werkzeug Thread-8 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:28] "[36mGET /static/posts/nightmare.jpg HTTP/1.1[0m" 304 -
+2022-12-16 17:13:32,181 INFO werkzeug Thread-9 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:32] "[32mGET /like/3 HTTP/1.1[0m" 302 -
+2022-12-16 17:13:32,202 INFO werkzeug Thread-10 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:32] "GET /home HTTP/1.1" 200 -
+2022-12-16 17:13:32,298 INFO werkzeug Thread-11 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:32] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2022-12-16 17:13:32,336 INFO werkzeug Thread-12 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:32] "[36mGET /static/standup.png HTTP/1.1[0m" 304 -
+2022-12-16 17:13:32,340 INFO werkzeug Thread-14 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:32] "[36mGET /static/posts/image0.jpeg HTTP/1.1[0m" 304 -
+2022-12-16 17:13:32,341 INFO werkzeug Thread-13 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:32] "[36mGET /static/users/pfp.jpeg HTTP/1.1[0m" 304 -
+2022-12-16 17:13:32,344 INFO werkzeug Thread-15 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:32] "[36mGET /static/posts/nightmare.jpg HTTP/1.1[0m" 304 -
+2022-12-16 17:13:51,360 INFO werkzeug MainThread : [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2022-12-16 17:13:51,360 INFO werkzeug MainThread : [33mPress CTRL+C to quit[0m
+2022-12-16 17:13:51,361 INFO werkzeug MainThread :  * Restarting with stat
+2022-12-16 17:13:51,943 WARNING werkzeug MainThread :  * Debugger is active!
+2022-12-16 17:13:52,008 INFO werkzeug MainThread :  * Debugger PIN: 439-137-571
+2022-12-16 17:13:53,847 INFO werkzeug Thread-2 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:53] "GET /josh HTTP/1.1" 200 -
+2022-12-16 17:13:53,916 INFO werkzeug Thread-3 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:53] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2022-12-16 17:13:53,938 INFO werkzeug Thread-5 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:53] "[36mGET /static/users/pfp.jpeg HTTP/1.1[0m" 304 -
+2022-12-16 17:13:53,939 INFO werkzeug Thread-4 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:53] "[36mGET /static/standup.png HTTP/1.1[0m" 304 -
+2022-12-16 17:13:53,941 INFO werkzeug Thread-6 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:53] "[36mGET /static/posts/nightmare.jpg HTTP/1.1[0m" 304 -
+2022-12-16 17:13:56,386 INFO werkzeug Thread-7 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:56] "GET /home HTTP/1.1" 200 -
+2022-12-16 17:13:56,448 INFO werkzeug Thread-8 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:56] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2022-12-16 17:13:56,481 INFO werkzeug Thread-9 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:56] "[36mGET /static/standup.png HTTP/1.1[0m" 304 -
+2022-12-16 17:13:56,483 INFO werkzeug Thread-10 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:56] "[36mGET /static/users/pfp.jpeg HTTP/1.1[0m" 304 -
+2022-12-16 17:13:56,486 INFO werkzeug Thread-11 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:56] "[36mGET /static/posts/image0.jpeg HTTP/1.1[0m" 304 -
+2022-12-16 17:13:56,486 INFO werkzeug Thread-12 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:56] "[36mGET /static/posts/nightmare.jpg HTTP/1.1[0m" 304 -
+2022-12-16 17:13:57,675 INFO werkzeug Thread-13 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:57] "GET /flaskdev HTTP/1.1" 200 -
+2022-12-16 17:13:57,737 INFO werkzeug Thread-14 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:57] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2022-12-16 17:13:57,747 INFO werkzeug Thread-15 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:57] "[36mGET /static/default.png HTTP/1.1[0m" 304 -
+2022-12-16 17:13:57,768 INFO werkzeug Thread-16 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:57] "[36mGET /static/standup.png HTTP/1.1[0m" 304 -
+2022-12-16 17:13:57,769 INFO werkzeug Thread-17 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:57] "[36mGET /static/users/pfp.jpeg HTTP/1.1[0m" 304 -
+2022-12-16 17:13:57,771 INFO werkzeug Thread-18 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:57] "[36mGET /static/posts/image0.jpeg HTTP/1.1[0m" 304 -
+2022-12-16 17:13:59,081 INFO werkzeug Thread-19 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:59] "[32mGET /unfollow/flaskdev HTTP/1.1[0m" 302 -
+2022-12-16 17:13:59,098 INFO werkzeug Thread-20 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:59] "GET /flaskdev HTTP/1.1" 200 -
+2022-12-16 17:13:59,153 INFO werkzeug Thread-21 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:59] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2022-12-16 17:13:59,183 INFO werkzeug Thread-22 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:59] "[36mGET /static/standup.png HTTP/1.1[0m" 304 -
+2022-12-16 17:13:59,187 INFO werkzeug Thread-23 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:59] "[36mGET /static/users/pfp.jpeg HTTP/1.1[0m" 304 -
+2022-12-16 17:13:59,189 INFO werkzeug Thread-25 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:59] "[36mGET /static/posts/image0.jpeg HTTP/1.1[0m" 304 -
+2022-12-16 17:13:59,189 INFO werkzeug Thread-24 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:13:59] "[36mGET /static/default.png HTTP/1.1[0m" 304 -
+2022-12-16 17:14:01,567 INFO werkzeug Thread-26 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:14:01] "GET /josh HTTP/1.1" 200 -
+2022-12-16 17:14:01,623 INFO werkzeug Thread-27 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:14:01] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2022-12-16 17:14:01,650 INFO werkzeug Thread-29 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:14:01] "[36mGET /static/users/pfp.jpeg HTTP/1.1[0m" 304 -
+2022-12-16 17:14:01,651 INFO werkzeug Thread-28 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:14:01] "[36mGET /static/standup.png HTTP/1.1[0m" 304 -
+2022-12-16 17:14:01,652 INFO werkzeug Thread-30 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:14:01] "[36mGET /static/posts/nightmare.jpg HTTP/1.1[0m" 304 -
+2022-12-16 17:14:04,092 INFO werkzeug Thread-31 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:14:04] "[32mGET /follow/flaskdev HTTP/1.1[0m" 302 -
+2022-12-16 17:14:04,107 INFO werkzeug Thread-32 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:14:04] "GET /flaskdev HTTP/1.1" 200 -
+2022-12-16 17:14:04,167 INFO werkzeug Thread-33 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:14:04] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2022-12-16 17:14:04,196 INFO werkzeug Thread-34 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:14:04] "[36mGET /static/standup.png HTTP/1.1[0m" 304 -
+2022-12-16 17:14:04,200 INFO werkzeug Thread-35 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:14:04] "[36mGET /static/users/pfp.jpeg HTTP/1.1[0m" 304 -
+2022-12-16 17:14:04,202 INFO werkzeug Thread-36 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:14:04] "[36mGET /static/default.png HTTP/1.1[0m" 304 -
+2022-12-16 17:14:04,202 INFO werkzeug Thread-37 (process_request_thread) : 127.0.0.1 - - [16/Dec/2022 17:14:04] "[36mGET /static/posts/image0.jpeg HTTP/1.1[0m" 304 -
