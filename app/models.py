@@ -55,9 +55,14 @@ class Post(db.Model):
     title = db.Column(db.String(100))
     text = db.Column(db.String(500))
     image = db.Column(db.String(), nullable=True)
-    no_of_likes = db.Column(db.Integer, default=0)
     date_created = db.Column(db.DateTime(timezone=True), server_default=func.now())
     __tablename__ = 'post'
+
+    def like_count(self):
+        # statement = Like.select().where(like.c.post_id == self.id)
+        # count = len(db.query(statement).all())
+        # qu
+        return Like.query.filter(Like.post_id==self.id).count()
 
     def __repr__(self):
         return str(self.user) + ' - ' + str(self.title)

@@ -96,15 +96,14 @@ def home():
 @login_required
 def like(post):
     post = Post.query.filter(Post.id == post).first()
-    like_filter = Like.query.filter(Like.user == current_user and Like.post_id == post.id).first()
+    like_filter = Like.query.filter(Like.user == current_user, Like.post_id == post.id).first()
+    print(like_filter)
     if like_filter == None:
         new_like = Like(post_id=post.id, user=current_user)
         db.session.add(new_like)
-        post.no_of_likes += 1
         db.session.commit()
     else:
         db.session.delete(like_filter)
-        post.no_of_likes -= 1
         db.session.commit()
 
     return redirect(url_for('home'))

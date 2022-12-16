@@ -17,15 +17,14 @@
                     {% for like in post.like %}
                       {% if like.user == current_user %}
                         {% do liked.append(1) %}
-                        <i class="fa-solid fa-heart"> {{ post.no_of_likes }}</i>
+                        <i class="fa-solid fa-heart"> {{ post.like_count() }}</i>
                       {% endif %}
                     {% endfor %}
                     {% if not liked %}
-                      <i class="fa-regular fa-heart"> {{ post.no_of_likes }}</i>
+                      <i class="fa-regular fa-heart"> {{ post.like_count() }}</i>
                     {% endif %}
                   </a>
                   <p class="d-inline-block card-text"><small class="text-muted">{{ post.date_created }}</small></p>
-                  
                 </div>
               </div>
             </div>
