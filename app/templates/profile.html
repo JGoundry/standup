@@ -15,12 +15,6 @@
                   <img src="{{ user.profile_img }}"
                         alt="Generic placeholder image" class="rounded-circle d-block img-fluid img-thumbnail mt-4 mb-2">
                 </div>
-                  {% if user == current_user %}
-                <!-- <button type="button" class="btn btn-outline-dark" data-mdb-ripple-color="dark"
-                  style="z-index: 1;">
-                  Edit profile
-                </button> -->
-                {% endif %}
               </div>
               <div class="ms-3" style="margin-top: 130px;">
                 <h5><strong>{{ user.username }}</strong></h5>
@@ -56,11 +50,16 @@
                 </div>
               </div>
               {% if post %}
-              <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="card mb-3 col-6 p-2" style="border-radius: 1rem;">
-                  <div class="card-body mx-3 my-3">
-                  <h5 class="d-inline-block card-title"><strong> {{ post.title }}</strong></h5>
-                  <p class="d-inline-block card-subtitle float-right"><small class="text-muted">Created by <a href="{{ url_for('profile', user=post.op) }}" class="text-black-50 fw-bold">{{ post.op }}</a></small></p>
+              <div class="d-flex justify-content-between align-items-center mb-4">
+                <p class="lead fw-normal mb-0"><strong>Recent Post</strong></p>
+                <p class="mb-0"><a href="{{ url_for('profile_posts', user=user) }}" class="text-muted">Show all</a></p>
+              </div>
+              <div class="row g-2">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                  <div class="card mb-3 col-6 p-2" style="border-radius: 1rem;">
+                    <div class="card-body mx-3 my-3">
+                    <h5 class="d-inline-block card-title"><strong> {{ post.title }}</strong></h5>
+                    <p class="d-inline-block card-subtitle float-right"><small class="text-muted">Created by <a href="{{ url_for('profile', user=post.op) }}" class="text-black-50 fw-bold">{{ post.op }}</a></small></p>
                   {% if post.image %}
                     <img class="card-img-top img-fluid" src="{{ post.image }}" alt="Post Image">
                   {% endif %}
