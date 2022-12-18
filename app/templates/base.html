@@ -51,9 +51,14 @@
       </a>
       {% if current_user.is_authenticated %}
       <!-- Left links -->
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('following') }}">Following</a>
         </li>
       </ul>
       <!-- Left links -->

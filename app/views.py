@@ -9,7 +9,7 @@ from werkzeug.utils import secure_filename
 import logging
 
 # Info Logger
-logging.basicConfig(filename = 'info.log', level=logging.INFO, format = f'%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
+# logging.basicConfig(filename = 'info.log', level=logging.INFO, format = f'%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
 
 # File Upload
 UPLOAD_FOLDER_POST = 'app/static/posts/'
@@ -91,6 +91,19 @@ def profile_posts(user):
 def home():
     posts = Post.query.order_by(Post.date_created)
     return render_template('home.html', posts=posts, title='Home')
+
+@app.route('/following', methods=['GET', 'POST'])
+@login_required
+def following():
+    following = current_user.followed.filter(User.id).all()
+    following_username = []
+    for user in following:
+        following_username.append(user.username)
+
+    posts = Post.query.filter(Post.op.in_(following_username))
+
+    return render_template('home.html', posts=posts, title='Following')
+
 
 @app.route('/like/<int:post>', methods=['GET', 'POST'])
 @login_required
