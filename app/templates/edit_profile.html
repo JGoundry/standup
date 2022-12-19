@@ -1,11 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
+<!-- Gradient Container -->
 <section class="h-100 gradient-custom">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
+      <!-- Card -->
       <div class="card mb-3 col-6 p-3" style="border-radius: 1rem;">
         <div class="card-body mx-3 my-1 text-center">
           <div class="mb-md-1 mt-md-3 pb-5">
+            <!-- Circle Logo -->
             <img
               src="/static/standup_circle.png"
               height="200"
@@ -14,7 +17,9 @@
               style="border-radius: 1rem"
               />
             <h2 class="fw-bold mb-2 mt-5 text-uppercase">Edit Profile</h2>
+            <!-- Edit Profile Form -->
             <form action="" method="post" name="post" enctype="multipart/form-data">
+              <!-- CSRF Token -->
               {{ form.hidden_tag() }}
               <div class="form-outline form-white mb-4">
                 {{ form.title(class="form-control form-control-lg", placeholder="Enter Title") }}
@@ -35,10 +40,13 @@
               <p class="card-text margin-left"></p>
               <button type="submit" class="btn btn-outline-success btn-lg px-5" >Change</button>
             </form>
+            <!-- Edit Profile Form -->
           </div>
         </div>
       </div>
+      <!-- Card -->
     </div>
   </div>
 </section>
+<!-- Gradient Container -->
 {% endblock %}
