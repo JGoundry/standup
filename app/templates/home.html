@@ -1,35 +1,35 @@
 {% extends "base.html" %}
 {% block content %}
 <section class="h-100 gradient-custom">
-    <div class="container py-5 h-100">
-          {% for post in posts %}
-          <div class="row d-flex justify-content-center align-items-center h-100">
-              <div class="card mb-3 col-6 p-2" style="border-radius: 1rem;">
-                <div class="card-body mx-3 my-3">
-                <h5 class="d-inline-block card-title"><strong> {{ post.title }}</strong></h5>
-                <p class="d-inline-block card-subtitle float-right"><small class="text-muted">Created by <a href="{{ url_for('profile', user=post.op) }}" class="text-black-50 fw-bold">{{ post.op }}</a></small></p>
-                {% if post.image %}
-                  <img class="card-img-top img-fluid" src="{{ post.image }}" alt="Post Image">
-                {% endif %}
-                  <p class="card-text margin-left">{{ post.text }}</p>
-                  <a class="d-inline-block btn" href="{{ url_for('like', post=post.id) }}">
-                    {% set liked = [] %}
-                    {% for like in post.like %}
-                      {% if like.user == current_user %}
-                        {% do liked.append(1) %}
-                        <i class="fa-solid fa-heart"> {{ post.like_count() }}</i>
-                      {% endif %}
-                    {% endfor %}
-                    {% if not liked %}
-                      <i class="fa-regular fa-heart"> {{ post.like_count() }}</i>
-                    {% endif %}
-                  </a>
-                  <p class="d-inline-block card-text"><small class="text-muted">{{ post.date_created }}</small></p>
-                </div>
-              </div>
-            </div>
+  <div class="container py-5 h-100">
+    {% for post in posts %}
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="card mb-3 col-6 p-2" style="border-radius: 1rem;">
+        <div class="card-body mx-3 my-3">
+          <h5 class="d-inline-block card-title"><strong> {{ post.title }}</strong></h5>
+          <p class="d-inline-block card-subtitle float-right"><small class="text-muted">Created by <a href="{{ url_for('profile', user=post.op) }}" class="text-black-50 fw-bold">{{ post.op }}</a></small></p>
+          {% if post.image %}
+          <img class="card-img-top img-fluid" src="{{ post.image }}" alt="Post Image">
+          {% endif %}
+          <p class="card-text margin-left">{{ post.text }}</p>
+          <a class="d-inline-block btn" href="{{ url_for('like', post=post.id) }}">
+          {% set liked = [] %}
+          {% for like in post.like %}
+          {% if like.user == current_user %}
+          {% do liked.append(1) %}
+          <i class="fa-solid fa-heart"> {{ post.like_count() }}</i>
+          {% endif %}
           {% endfor %}
+          {% if not liked %}
+          <i class="fa-regular fa-heart"> {{ post.like_count() }}</i>
+          {% endif %}
+          </a>
+          <p class="d-inline-block card-text"><small class="text-muted">{{ post.date_created }}</small></p>
+        </div>
       </div>
     </div>
-  </section>
+    {% endfor %}
+  </div>
+  </div>
+</section>
 {% endblock %}

@@ -1,44 +1,44 @@
 {% extends "base.html" %}
 {% block content %}
 <section class="h-100 gradient-custom">
-    <div class="container py-5 h-100">
-          <div class="row d-flex justify-content-center align-items-center h-100">
-              <div class="card mb-3 col-6 p-3" style="border-radius: 1rem;">
-                <div class="card-body mx-3 my-1 text-center">
-                  <div class="mb-md-1 mt-md-3 pb-5">
-                    <img
-                    src="/static/standup_circle.png"
-                    height="200"
-                    alt="StandUp Logo"
-                    loading="lazy"
-                    style="border-radius: 1rem"
-                  />
-                  <h2 class="fw-bold mb-2 mt-5 text-uppercase">Edit Profile</h2>
-                  <form action="" method="post" name="post" enctype="multipart/form-data">
-                  {{ form.hidden_tag() }}
-                  <div class="form-outline form-white mb-4">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="card mb-3 col-6 p-3" style="border-radius: 1rem;">
+        <div class="card-body mx-3 my-1 text-center">
+          <div class="mb-md-1 mt-md-3 pb-5">
+            <img
+              src="/static/standup_circle.png"
+              height="200"
+              alt="StandUp Logo"
+              loading="lazy"
+              style="border-radius: 1rem"
+              />
+            <h2 class="fw-bold mb-2 mt-5 text-uppercase">Edit Profile</h2>
+            <form action="" method="post" name="post" enctype="multipart/form-data">
+              {{ form.hidden_tag() }}
+              <div class="form-outline form-white mb-4">
                 {{ form.title(class="form-control form-control-lg", placeholder="Enter Title") }}
-                  </div>
-                <div class="form-outline form-white mb-4">
-                  {{ form.bio(class="form-control form-control-lg", placeholder="Enter Bio") }}
-                </div>
-                <div class="form-outline form-white mb-4">
-                  {{ form.old_password(class="form-control form-control-lg", placeholder="Enter Old Password") }}
-                </div>
-                <div class="form-outline form-white mb-4">
-                  {{ form.password(class="form-control form-control-lg", placeholder="Enter New Password") }}
-                </div>
-                <div class="form-outline form-white mb-4">
-                  {{ form.file(class="form-control") }}
-                </div>
-                <p class="d-inline-block card-text"><small class="text-muted"></small></p>
-                  <p class="card-text margin-left"></p>
-                  <button type="submit" class="btn btn-outline-success btn-lg px-5" >Change</button>
-                </form>
-                </div>
               </div>
-            </div>
+              <div class="form-outline form-white mb-4">
+                {{ form.bio(class="form-control form-control-lg", placeholder="Enter Bio") }}
+              </div>
+              <div class="form-outline form-white mb-4">
+                {{ form.old_password(class="form-control form-control-lg", placeholder="Enter Old Password") }}
+              </div>
+              <div class="form-outline form-white mb-4">
+                {{ form.password(class="form-control form-control-lg", placeholder="Enter New Password") }}
+              </div>
+              <div class="form-outline form-white mb-4">
+                {{ form.file(class="form-control") }}
+              </div>
+              <p class="d-inline-block card-text"><small class="text-muted"></small></p>
+              <p class="card-text margin-left"></p>
+              <button type="submit" class="btn btn-outline-success btn-lg px-5" >Change</button>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 {% endblock %}
