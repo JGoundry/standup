@@ -1,4 +1,4 @@
-from flask import render_template, flash, request, Flask, redirect, url_for, send_from_directory
+from flask import render_template, Flask, redirect, url_for
 from app import app, models, db, admin
 from .forms import LoginForm, RegisterForm, PostForm, ProfileForm
 from flask_admin.contrib.sqla import ModelView
@@ -8,20 +8,20 @@ from .models import User, Post, Like, followers
 from werkzeug.utils import secure_filename
 import logging
 
-# Info Logger
+# Info Logger File Output
 # logging.basicConfig(filename = 'info.log', level=logging.INFO, format = f'%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
 
 # File Upload
 UPLOAD_FOLDER_POST = 'app/static/posts/'
 UPLOAD_FOLDER_USER = 'app/static/users/'
 
-# Jijna do
+# Jijna Do
 app.jinja_env.add_extension('jinja2.ext.do')
 
-# Bcrypt
+# Bcrypt Password Hashing
 bcrypt = Bcrypt(app)
 
-# Admin
+# Admin Panel Views
 admin.add_view(ModelView(models.User, db.session))
 admin.add_view(ModelView(models.Post, db.session))
 admin.add_view(ModelView(models.Like, db.session))
@@ -126,6 +126,7 @@ def follow(user):
     user = User.query.filter(User.username == user).first()
     current_user.follow(user)
     db.session.commit()
+    app.logger.info("user " + str(current_user) + " followed " + str(user))
     return redirect(url_for('profile', user=user))
 
 @app.route('/unfollow/<user>', methods=['GET', 'POST'])
@@ -134,13 +135,13 @@ def unfollow(user):
     user = User.query.filter(User.username == user).first()
     current_user.unfollow(user)
     db.session.commit()
+    app.logger.info("user " + str(current_user) + " unfollowed " + str(user))
     return redirect(url_for('profile', user=user))
 
 @app.route('/post', methods=['GET', 'POST'])
 @login_required
 def post():
     form = PostForm()
-
     if form.validate_on_submit():
         if form.file.data:
             filename = secure_filename(form.file.data.filename)
