@@ -9,7 +9,7 @@ from werkzeug.utils import secure_filename
 import logging
 
 # Info Logger File Output
-# logging.basicConfig(filename = 'info.log', level=logging.INFO, format = f'%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
+logging.basicConfig(filename = 'info.log', level=logging.INFO, format = f'%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
 
 # File Upload
 UPLOAD_FOLDER_POST = 'app/static/posts/'
